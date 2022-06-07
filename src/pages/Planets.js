@@ -1,7 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import Table from "../components/Table";
+import { getPlanets } from "../actions";
 
 class Planets extends React.Component {
+  componentDidMount() {
+    this.props.getPlanets();
+  }
   render() {
     return (
       <div>
@@ -11,4 +17,4 @@ class Planets extends React.Component {
     );
   }
 }
-export default Planets;
+export default connect(null, { getPlanets })(Planets);
