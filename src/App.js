@@ -1,10 +1,13 @@
 import React from "react";
-import Table from "./components/Table";
 
-class App extends React.Component {
-  render() {
-    return <div className="App">hello <Table/></div>;
-  }
+import Planets from "./pages/Planets";
+
+const App = () =>  {
+  return (
+    <div className="ui container">
+      <Planets/>
+    </div>
+  )
 }
 
 export default App;

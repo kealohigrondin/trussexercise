@@ -1,4 +1,4 @@
-import swapi from "../swapi"
+import swapi from "../api/swapi"
 
 export const getPlanets = () => {
     swapi.get('/planets').then(response => {
