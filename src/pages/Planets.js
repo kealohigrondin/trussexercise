@@ -7,7 +7,44 @@ import { getPlanets } from "../actions";
 class Planets extends React.Component {
   componentDidMount() {
     this.props.getPlanets();
+    //this.getPlanetWaterSurfaceArea();
+    //need to update redux for each planet with the water surface area
   }
+  calculateWaterSurfaceArea = () => {};
+
+  getPlanetWaterSurfaceArea = () => {
+    this.props.planets.foreach((planet) => {
+      planet = { ...planet, ...{ waterSurfaceArea: "a lot" } };
+    });
+  };
+
+  renderTableHeaders = () => {
+    return (
+      <tr>
+        <th>Planet Name</th>
+        <th>Climate</th>
+        <th>Residents</th>
+        <th>Climates</th>
+        <th>Population</th>
+        <th>Water Surface Area (km^2)</th>
+      </tr>
+    );
+  };
+
+  renderTableBody = () => {
+    return this.props.planets.map((planet) => {
+      return (
+        <tr key={planet.name}>
+          <td>{planet.name}</td>
+          <td>{planet.climate}</td>
+          <td>{planet.residents.length}</td>
+          <td>{planet.terrain}</td>
+          <td>{planet.population}</td>
+          <td>xxx km^2</td>
+        </tr>
+      );
+    });
+  };
 
   render() {
     if (!this.props.planets) {
@@ -16,7 +53,10 @@ class Planets extends React.Component {
     return (
       <div>
         <h1>Planets page component</h1>
-        <Table tableContent={this.props.planets}/>
+        <Table
+          renderTableHeaders={this.renderTableHeaders}
+          renderTableBody={this.renderTableBody}
+        />
       </div>
     );
   }
