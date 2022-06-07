@@ -1,6 +1,20 @@
 import React from "react";
 
 class Table extends React.Component {
+  renderTableRows = () => {
+    return this.props.tableContent.map((item) => {
+      return (
+        <tr key={item.name}>
+          <td>{item.name}</td>
+          <td>{item.climate}</td>
+          <td>{item.residents.length}</td>
+          <td>{item.terrain}</td>
+          <td>{item.population}</td>
+          <td>surface area covered by water in km^2</td>
+        </tr>
+      );
+    });
+  };
   render() {
     return (
       <div>
@@ -8,17 +22,16 @@ class Table extends React.Component {
         <table className="ui celled table">
           <thead>
             <tr>
-              <th>Head1</th>
-              <th>Head2</th>
-              <th>Head3</th>
+              <th>Planet Name</th>
+              <th>Climate</th>
+              <th>Residents</th>
+              <th>Climates</th>
+              <th>Population</th>
+              <th>Surface Area of Water (km^2)</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>row1</td>
-              <td>row2</td>
-              <td>row3</td>
-            </tr>
+            {this.renderTableRows()}
           </tbody>
         </table>
       </div>
