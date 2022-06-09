@@ -7,15 +7,24 @@ import { getPlanets } from "../actions";
 class Planets extends React.Component {
   componentDidMount() {
     this.props.getPlanets();
-    //this.getPlanetWaterSurfaceArea();
-    //need to update redux for each planet with the water surface area
   }
-  calculateWaterSurfaceArea = () => {};
 
-  getPlanetWaterSurfaceArea = () => {
-    this.props.planets.foreach((planet) => {
-      planet = { ...planet, ...{ waterSurfaceArea: "a lot" } };
-    });
+  calcWaterSurfaceArea(diameter, surface_water) {
+    if (diameter === "unknown" || surface_water === "unknown") return "?";
+    const surfaceArea = 4 * Math.PI * ((diameter / 2) ^ 2);
+    return Math.floor(surface_water * surfaceArea);
+  }
+
+  /*
+  formatString() returns:
+    "?" if value is "unknown"
+    value when value isn't able to convert to a number
+    otherwise, value as a number with commas (at this point,  logically, it must be a number)
+  */
+  formatString = (num) => {
+    if (num === "unknown") return "?";
+    const ret = Math.floor(num).toLocaleString();
+    return ret === "NaN" ? num : ret;
   };
 
   renderTableHeaders = () => {
@@ -35,20 +44,26 @@ class Planets extends React.Component {
     return this.props.planets.map((planet) => {
       return (
         <tr key={planet.name}>
-          <td>{planet.name}</td>
-          <td>{planet.climate}</td>
-          <td>{planet.residents.length}</td>
-          <td>{planet.terrain}</td>
-          <td>{planet.population}</td>
-          <td>xxx km^2</td>
+          <td>
+            <a href={planet.url} target="blank">
+              {planet.name}
+            </a>
+          </td>
+          <td>{this.formatString(planet.climate)}</td>
+          <td>{this.formatString(planet.residents.length)}</td>
+          <td>{this.formatString(planet.terrain)}</td>
+          <td>{this.formatString(planet.population)}</td>
+          <td>
+            {this.calcWaterSurfaceArea(planet.diameter, planet.surface_water)}
+          </td>
         </tr>
       );
     });
   };
 
   render() {
-    if (!this.props.planets) {
-      return <div>loading...</div>;
+    if (this.props.planets.length <= 1) {
+      return <h3>loading planets...</h3>;
     }
     return (
       <div>
