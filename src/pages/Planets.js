@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Table from "../components/Table";
 import { getPlanets } from "../actions";
+import { GET_PLANETS_ERROR } from "../actions/types";
 
 class Planets extends React.Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class Planets extends React.Component {
   calcWaterSurfaceArea(diameter, surface_water) {
     if (diameter === "unknown" || surface_water === "unknown") return "?";
     const surfaceArea = 4 * Math.PI * ((diameter / 2) ^ 2);
-    return Math.floor(surface_water * surfaceArea / 100);
+    return Math.floor((surface_water * surfaceArea) / 100);
   }
 
   /*
@@ -62,9 +63,10 @@ class Planets extends React.Component {
   };
 
   render() {
-    if (this.props.planets.length <= 1) {
-      return <h3>loading planets...</h3>;
+    if (this.props.planets[0] === GET_PLANETS_ERROR) {
+      return <h1>{GET_PLANETS_ERROR}</h1>;
     }
+    if (this.props.planets.length < 1) return <h1>loading planets...</h1>;
     return (
       <div>
         <h1>Planets page component</h1>
