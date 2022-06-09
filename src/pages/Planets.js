@@ -12,7 +12,7 @@ class Planets extends React.Component {
   calcWaterSurfaceArea(diameter, surface_water) {
     if (diameter === "unknown" || surface_water === "unknown") return "?";
     const surfaceArea = 4 * Math.PI * ((diameter / 2) ^ 2);
-    return Math.floor(surface_water * surfaceArea);
+    return Math.floor(surface_water * surfaceArea / 100);
   }
 
   /*
