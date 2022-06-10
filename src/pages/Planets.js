@@ -55,7 +55,7 @@ class Planets extends React.Component {
           <td>{this.formatString(planet.terrain)}</td>
           <td>{this.formatString(planet.population)}</td>
           <td>
-            {this.calcWaterSurfaceArea(planet.diameter, planet.surface_water)}
+            {this.formatString(this.calcWaterSurfaceArea(planet.diameter, planet.surface_water))}
           </td>
         </tr>
       );
