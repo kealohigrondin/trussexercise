@@ -1,3 +1,12 @@
+# How to run this app
+1. download git https://git-scm.com/download/win 
+2. clone this repository to your machine using 'git clone https://git-scm.com/download/win'
+3. install node https://nodejs.org/en/download/
+4. check node and npm were installed in the command line 'node -v' and 'npm -v'
+5. run 'npm install' (installs all dependencies listed in package.json)
+6. switch to master branch with 'git checkout origin/master'
+6. run 'npm start' to start the web app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
