@@ -1,6 +1,6 @@
 import React from "react";
 
-import Planets from "./pages/Planets";
+import Planets from "./pages/PlanetsList";
 
 const App = () =>  {
   return (

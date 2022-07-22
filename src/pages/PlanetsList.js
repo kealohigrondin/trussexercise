@@ -20,7 +20,7 @@ class Planets extends React.Component {
   formatString() returns:
     "?" if value is "unknown"
     value when value isn't able to convert to a number
-    otherwise, value as a number with commas (at this point,  logically, it must be a number)
+    otherwise, value as a number with commas (at this point, logically, it must be a number)
   */
   formatString = (num) => {
     if (num === "unknown") return "?";
@@ -55,7 +55,7 @@ class Planets extends React.Component {
           <td>{this.formatString(planet.terrain)}</td>
           <td>{this.formatString(planet.population)}</td>
           <td>
-            {this.calcWaterSurfaceArea(planet.diameter, planet.surface_water)}
+            {this.formatString(this.calcWaterSurfaceArea(planet.diameter, planet.surface_water))}
           </td>
         </tr>
       );
