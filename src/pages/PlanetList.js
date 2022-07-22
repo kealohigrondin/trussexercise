@@ -5,7 +5,7 @@ import Table from "../components/Table";
 import { getPlanets } from "../actions";
 import { GET_PLANETS_ERROR } from "../actions/types";
 
-class Planets extends React.Component {
+class PlanetList extends React.Component {
   componentDidMount() {
     this.props.getPlanets();
   }
@@ -85,4 +85,4 @@ const mapStateToProps = (state) => {
     planets: Object.values(state.planets),
   };
 };
-export default connect(mapStateToProps, { getPlanets })(Planets);
+export default connect(mapStateToProps, { getPlanets })(PlanetList);
